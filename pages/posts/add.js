@@ -41,7 +41,7 @@ export default function AddPostPage({ token }) {
 
             <Container className='mt-3 mb-3' dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
-                    <p class="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
+                    <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
                     <Col md={12} >
                         <Card className='bg-light pb-3' style={{ width: '70%', 'text-align': 'left' }}>

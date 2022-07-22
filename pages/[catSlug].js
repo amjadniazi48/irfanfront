@@ -49,7 +49,7 @@ const CategoryPage = () => {
         
         {data.posts && data.posts.data.map((item) => {
           return (
-            <div className="row">
+            <div className="row" key={item.id}>
               <div className="entry-content post-content post-page">
                 <CategoryItem key={item.id} item={item} ></CategoryItem>
 

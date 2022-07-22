@@ -37,7 +37,7 @@ export default function RegisterPage() {
     <Container className='mt-3 mb-3' dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
       <Alert show={show} variant="success" ><b>Registration Successfull.</b> A confirmation message has been sent to your email address, please follow the instructions in the email to activate your account </Alert>
       <Row>
-        <p class="h1 mt-2" style={{ 'fontWeight': 'bolder', 'color': '#4A5EC3' }}>
+        <p className="h1 mt-2" style={{ 'fontWeight': 'bolder', 'color': '#4A5EC3' }}>
           <BsFillPersonPlusFill style={{ color: '#4A5EC3' }} />&nbsp;&nbsp;&nbsp;{t('common:register')}</p>
         <hr></hr>
         <Col md={12} >

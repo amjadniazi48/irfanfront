@@ -23,7 +23,7 @@ const loadData = async (locale) => {
         <ul className={className} style={locale=='en'?{ 'list-style':'none'}:{'list-style':'circle '}}>
           {data && data.map((item) => {
             return (
-          <li className={`cat-item cat-item-${item.id}`}>
+          <li className={`cat-item cat-item-${item.id}`} key={item.id}>
               <a href="#"><span className="cat-name">{item.attributes.name}</span> 
               &nbsp;<span className="badge bg-primary rounded-pill">5</span></a>
             </li>
