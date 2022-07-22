@@ -1,0 +1,7 @@
+{
+    "locales":["en","ur-PK"],
+    "defaultLocale":"en",
+    "pages":{
+        "*":["common"]
+    }
+}
