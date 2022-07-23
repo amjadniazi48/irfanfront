@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { NEXT_URL} from '@/config/index';
 import Link from 'next/link';
 export default function Header() {
     const router = useRouter()
@@ -24,7 +25,7 @@ export default function Header() {
                     <div className="row">
                         <div className="col-lg-6 order-lg-2">
                             <div id="main-logo" className="main-logo my-2 my-lg-4 text-center">
-                                <a href="#" className="navbar-brand custom-logo-link" rel="home" aria-current="page">
+                                <a href={NEXT_URL} className="navbar-brand custom-logo-link" rel="home" aria-current="page">
                                     <img width="271" height="60" src="https://demo.bootstrap.news/personal/wp-content/uploads/2019/11/cropped-qwigley.regular.png" className="img-fluid" alt="Personal Blog" /></a></div>
                         </div>
                         <div className="col-lg-3 order-lg-1">
