@@ -13,7 +13,7 @@ exports.modules = {
 /* harmony export */ });
 /* unused harmony exports NEXT_URL, PER_PAGE */
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
-const NEXT_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || "https://irfanfront.vercel.app/";
+const NEXT_URL = process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
 const PER_PAGE = 10;
 
 

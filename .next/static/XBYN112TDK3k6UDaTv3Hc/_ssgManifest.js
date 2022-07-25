@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002F","\u002Faccount\u002Flogin","\u002Faccount\u002Fregister","\u002Fposts\u002Fadd"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
