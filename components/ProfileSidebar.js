@@ -1,13 +1,13 @@
 import { API_URL, PER_PAGE } from '@/config/index';
 export default function ProfileSidebar({profileData}) {
-  
+  console.log(profileData)
     return(
         <aside id="bootnews_author-3" className="widget widget_categories widget_categories_custom">
         <div className="block-area">
           <div className="about-profile">
             <div className="about-content text-center">
               <div className="about-img">
-                <img className="img-fluid avatar-xl rounded-circle mb-3" alt="profile images" src={profileData.attributes.image.data.attributes.formats.medium.url} />
+                {/* <img className="img-fluid avatar-xl rounded-circle mb-3" alt="profile images" src={profileData.attributes.image.data.attributes.formats.medium.url} /> */}
                 <h3 className="text-uppercase">{profileData.attributes.name}</h3>
                 <p style={{'textAlign':'justify', 'textJustify': 'inter-word ' }}>{profileData.attributes.description}</p>
               </div>
@@ -51,5 +51,5 @@ export default function ProfileSidebar({profileData}) {
         </div>
       </aside>
     )
+  }
 
-}
