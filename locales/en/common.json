@@ -17,5 +17,6 @@
      "usernameV" :"Username is required",
      "passwordV" :"Password is required",
      "emailV":"Email is required",
-     "confirmPasswordV":"Confirm Password is required"
+     "confirmPasswordV":"Confirm Password is required",
+     "irfanshehzad": "Irfan Shehzad"
 }

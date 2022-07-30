@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import { NEXT_URL} from '@/config/index';
+
+import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link';
 export default function Header() {
+    const { t, lang } = useTranslation('common')
     const router = useRouter()
     return (
         <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
@@ -25,8 +27,8 @@ export default function Header() {
                     <div className="row">
                         <div className="col-lg-6 order-lg-2">
                             <div id="main-logo" className="main-logo my-2 my-lg-4 text-center">
-                                <a href={NEXT_URL} className="navbar-brand custom-logo-link" rel="home" aria-current="page">
-                                    <img width="271" height="60" src="https://demo.bootstrap.news/personal/wp-content/uploads/2019/11/cropped-qwigley.regular.png" className="img-fluid" alt="Personal Blog" /></a></div>
+                               <Link href='/' className="navbar-brand custom-logo-link" rel="home" aria-current="page" passHref>
+                                    <a><h1> {t('common:irfanshehzad')} </h1></a></Link></div>
                         </div>
                         <div className="col-lg-3 order-lg-1">
                             <div className="text-center">
