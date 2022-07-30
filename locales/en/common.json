@@ -18,5 +18,6 @@
      "passwordV" :"Password is required",
      "emailV":"Email is required",
      "confirmPasswordV":"Confirm Password is required",
-     "irfanshehzad": "Irfan Shehzad"
+     "irfanshehzad": "Irfan Shehzad",
+     "copyright": "All rights reserved, irfanshahzad.org"
 }

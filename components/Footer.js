@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router'
+import useTranslation from 'next-translate/useTranslation'
 export default function Header() {
+  const { t, lang } = useTranslation('common')
   const {locale} = useRouter()
     return (
       <>
         <footer  dir={locale === 'ur-Pk' ? 'rtl' : 'ltr'}>
        
           <div id="footer" className="bg-dark py-5 px-3">
-          <p  style={{color:'white',textAlign:'center'}}> &copy;&nbsp; {new Date().getFullYear()},&nbsp;irfanshehzad.org</p>
+          <p  style={{color:'white',textAlign:'center'}}> &copy;&nbsp; {new Date().getFullYear()},&nbsp;{t('common:copyright')}</p>
           </div>
          
         </footer>
