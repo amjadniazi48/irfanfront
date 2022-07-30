@@ -11,7 +11,7 @@ export default function Header() {
                         {router.locales && router.locales.map((loc) => {
                             return (
                                 <>
-                                    <Link href={router.asPath} locale={loc} >
+                                    <Link href={router.asPath} locale={loc} key={loc.id}>
                                         <a style={{ color: "white"}}> <span>{loc == "en" ? " English |" : "  اردو"}</span>&nbsp;&nbsp;</a>
                                     </Link>
                                 </>

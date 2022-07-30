@@ -9,13 +9,14 @@ import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link';
 export default function LoginPage() {  
     const { t, lang } = useTranslation('common')
+   
     const router = useRouter();
     const [show, setShow] = useState(false);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { login, error } = useContext(AuthContext)
    //console.log(error+'hello')
-     useEffect(() => error && setShow(true))
+    // useEffect(() => error && setShow(true))
     const {register,handleSubmit,formState:{errors}} = useForm();
     const handleLogin = (e) => {
        // e.preventDefault();  

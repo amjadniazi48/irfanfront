@@ -69,7 +69,7 @@ export default function Menu({ menus }) {
                                         </>
                                     )
                                 })}
-                                 {user? (
+                                 {user && t? (
                                      <>
                                  <li id="menu-item" className="nav-item"><a href="javascript:;" onClick={() => logout()} className="nav-link" style={{color:'#F54637'}}>{t('common:logout')}({user.username})</a></li>
                                     </>
