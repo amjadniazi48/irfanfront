@@ -8,7 +8,7 @@ export default function Header() {
         <footer  dir={locale === 'ur-Pk' ? 'rtl' : 'ltr'}>
        
           <div id="footer" className="bg-dark py-5 px-3">
-          <p  style={{color:'white',textAlign:'center'}}> &copy;&nbsp; {new Date().getFullYear()},&nbsp;{t('common:copyright')}</p>
+          <p  style={{color:'white',textAlign:'center'}}>{new Date().getFullYear()},&nbsp;{t('common:copyright')}&copy;&nbsp; </p>
           </div>
          
         </footer>
