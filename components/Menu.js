@@ -45,19 +45,19 @@ export default function Menu({ menus }) {
                                                 return (
                                                     <li id="menu-item" className="nav-item" key={item.id}>
                                                         {item.sublinks.length == 0 ?
-                                                            <Link href={ (item.link.label=="Home" ||item.link.label=="صفحہ اول")? "/":`/${item.link.label}`}>
-                                                            <a title={item.link.label} href="#" className="nav-link">{item.link.label}</a>
+                                                            <Link href={ (item.link.label=="Home" ||item.link.label=="صفحہ اول")? "/":`/${item.link.href}`}>
+                                                            <a title={item.link.href} href="#" className="nav-link">{item.link.href}</a>
                                                             </Link>
                                                             :
                                                             <>
                                                                 <a title="Dropdown" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                                    className="dropdown-toggle nav-link" id="menu-item-dropdown">{item.link.label}</a>
+                                                                    className="dropdown-toggle nav-link" id="menu-item-dropdown">{item.link.href}</a>
                                                                 <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown" role="menu">
 
                                                                     {item && item.sublinks.map((subl) => {
                                                                         return (
                                                                             <li id="menu-item" className="nav-item" key={subl.id}>
-                                                                                <a title="Sub menu" href="#" className="dropdown-item">{subl.label}</a></li>
+                                                                                <a title="Sub menu" href="#" className="dropdown-item">{subl.href}</a></li>
                                                                         );
                                                                     })}
                                                                 </ul>
