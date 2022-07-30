@@ -40,6 +40,7 @@ const CategoryPage = () => {
       `;
   const { data, loading, error } = useQuery(QUERY, { variables: { catSlug, locale } });
   console.log(data)
+  console.log(error)
   try {
     return (
       <div className="col-12 mt-5 " style={{marginLeft:'10px'}}>
