@@ -34,7 +34,7 @@ const ArticleItem = ({ item }) => {
 
             </a>
           </Link>
-          <figcaption>{item.attributes.title}</figcaption>
+         
         </div>
       </div>
       <div className="col-sm-12 col-md-12 col-lg-12">
