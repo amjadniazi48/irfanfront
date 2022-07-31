@@ -39,13 +39,13 @@ const CategoryPage = () => {
      
       `;
   const { data, loading, error } = useQuery(QUERY, { variables: { catSlug, locale } });
-  console.log(data[0].title)
-  console.log(error)
+  //console.log(data[0].title)
+ // console.log(error)
   try {
     return (
       <div className="col-12 mt-5 " style={{marginLeft:'10px'}}>
           <div className="block-title-4 text-center ">
-                        <h1><span>{data.title}</span></h1>
+                        <h1><span>{data.attributes.title}</span></h1>
                         </div>
         
         {data.posts && data.posts.data.map((item) => {
