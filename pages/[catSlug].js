@@ -65,7 +65,7 @@ const CategoryPage = () => {
     )
   }
   catch {
-    return <p style={{ marginTop: "10px" }}>Oops! No Data please return to <Link href="/"><a>Home Page</a></Link></p>;
+    return <p style={{ marginTop: "10px" ,marginRight:'10%'}}>Oops! No Data please return to <Link href="/"><a>Home Page</a></Link></p>;
   }
 
 }
