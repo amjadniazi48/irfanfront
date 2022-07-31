@@ -46,7 +46,7 @@ export default function Menu({ menus }) {
                                                     <li id="menu-item" className="nav-item" key={item.id}>
                                                         {item.sublinks.length == 0 ?
                                                             <Link href={ (item.link.label=="Home" ||item.link.label=="صفحہ اول")? "/":`/${item.link.href}`}>
-                                                            <a title={item.link.href} href="#" className="nav-link">{item.link.href}</a>
+                                                            <a title={item.link.label} href="#" className="nav-link">{item.link.label}</a>
                                                             </Link>
                                                             :
                                                             <>
