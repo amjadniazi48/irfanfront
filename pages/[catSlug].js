@@ -45,7 +45,7 @@ const CategoryPage = () => {
     return (
       <div className="col-12 mt-5 " style={{marginLeft:'10px'}}>
           <div className="block-title-4 text-center ">
-                        <h1><span>{catSlug.charAt(0).toUpperCase() + catSlug.substring(1)}</span></h1>
+                        <h1><span>{data.title}</span></h1>
                         </div>
         
         {data.posts && data.posts.data.map((item) => {
