@@ -46,7 +46,7 @@ const ArticleItem=({item})=>{
               </h3>
               <div className="card-text mb-2 text-muted small">
                 <span className="fw-bold d-none d-sm-inline me-1">
-                  <a href="#" title="Posts by aribudin" rel="author">aribudin</a>
+                  <a href="#" title="Posts by aribudin" rel="author">Admin</a>
                 </span>
                 <time className="news-date" >{new Date(item.attributes.createdAt).toLocaleDateString(locale)} </time>
               </div>

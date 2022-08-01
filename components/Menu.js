@@ -76,7 +76,7 @@ export default function Menu({ menus }) {
                                  ):
                                  (
                                      <>
-                                    <li id="menu-item" className="nav-item"><Link href={'/account/login'}><a className="nav-link" style={{color:'#F54637'}}>{t('common:login')}</a></Link></li>  
+                                
                                     </>
                                  ) 
                                 }  
@@ -118,74 +118,59 @@ export default function Menu({ menus }) {
                 <nav id="mobile-menu" className="menu-mobile d-flex flex-column push push-start shadow-r-sm bg-white">
 
                     <div className="mobile-content mb-auto">
-
                         <div className="logo-sidenav p-2">
-                            <a href="https://demo.bootstrap.news/personal/" className="navbar-brand custom-logo-link" rel="home"
-                                aria-current="page">
-                                <img width="271" height="60"
-                                    src="https://demo.bootstrap.news/personal/wp-content/uploads/2019/11/cropped-qwigley.regular.png"
-                                    className="img-fluid" alt="Personal Blog" />
-
-                            </a>
+                          
+                        <Link href='/' className="navbar-brand custom-logo-link" rel="home" aria-current="page" passHref>
+                                    <a><h1> {t('common:irfanshehzad')} </h1></a></Link>  
                         </div>
 
 
                         <div className="sidenav-menu">
                             <nav className="navbar navbar-inverse">
                                 <ul id="side-menu" className="nav navbar-nav list-group list-unstyled side-link">
-                                    <li
-                                        className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home active menu-item-2153 nav-item">
-                                        <a title="Home" href="#" className="nav-link">Home</a></li>
-                                    <li
-                                        className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2154 nav-item"><a
-                                            title="Photo" href="#" className="nav-link">Photo</a>
-                                    </li>
-                                    <li
-                                        className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2155 nav-item"><a
-                                            title="Hobby" href="#" className="nav-link">Hobby</a>
-                                    </li>
-                                    <li
-                                        className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2156 nav-item"><a
-                                            title="Food" href="#" className="nav-link">Food</a>
-                                    </li>
-                                    <li
-                                        className="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2157 nav-item"><a
-                                            title="Funny" href="#" className="nav-link">Funny</a>
-                                    </li>
-                                    <li
-                                        className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown mega-dropdown menu-item-2179 nav-item">
-                                        <a title="Dropdown" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                            className="dropdown-toggle nav-link" id="menu-item-dropdown-2179">Dropdown</a>
-                                        <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown-2179" role="menu">
-                                            <li className="menu-item">
-                                                <a title="Sub menu" href="#" className="dropdown-item">Sub menu</a>
-                                            </li>
-                                            <li className="menu-item">
-                                                <a title="Sub menu" href="#" className="dropdown-item">Sub menu</a>
-                                            </li>
-                                            <li
-                                                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown mega-dropdown menu-item-2184 nav-item">
-                                                <a title="Sub menu" href="#" className="dropdown-item dropdown-toggle"
-                                                    id="menu-item-dropdown-2184">Sub menu</a>
-                                                <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown-2184" role="menu">
-                                                    <li className="menu-item">
-                                                        <a title="Sub menu" href="#" className="dropdown-item">Sub menu</a>
+                                {menus && menus.global.data.attributes.navigation.map((menu) => {
+                                    return (
+                                        <>
+                                            {menu && menu.panels.map(item => {
+                                                return (
+                                                    <li id="menu-item" className="nav-item" key={item.id}>
+                                                        {item.sublinks.length == 0 ?
+                                                            <Link href={ (item.link.label=="Home" ||item.link.label=="صفحہ اول")? "/":`/${item.link.href}`}>
+                                                            <a title={item.link.label} href="#" className="nav-link">{item.link.label}</a>
+                                                            </Link>
+                                                            :
+                                                            <>
+                                                                <a title="Dropdown" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                    className="dropdown-toggle nav-link" id="menu-item-dropdown">{item.link.href}</a>
+                                                                <ul className="dropdown-menu" aria-labelledby="menu-item-dropdown" role="menu">
+
+                                                                    {item && item.sublinks.map((subl) => {
+                                                                        return (
+                                                                            <li id="menu-item" className="nav-item" key={subl.id}>
+                                                                                <a title="Sub menu" href="#" className="dropdown-item">{subl.href}</a></li>
+                                                                        );
+                                                                    })}
+                                                                </ul>
+                                                            </>
+                                                        }
                                                     </li>
-                                                    <li className="menu-item">
-                                                        <a title="Sub menu" href="#" className="dropdown-item">Sub menu</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li
-                                        className="menu-item  ">
-                                        <a title="Travel" href="#" className="nav-link">Travel</a>
-                                    </li>
-                                    <li
-                                        className="menu-item  ">
-                                        <a title="Video" href="#" className="nav-link">Register</a>
-                                    </li>
+                                                );
+                                            })}
+                                        </>
+                                    )
+                                })}
+                                 {user && t? (
+                                     <>
+                                 <li id="menu-item" className="nav-item"><a href="javascript:;" onClick={() => logout()} className="nav-link" style={{color:'#F54637'}}>{t('common:logout')}({user.username})</a></li>
+                                    </>
+                                 ):
+                                 (
+                                     <>
+                                  
+                                    </>
+                                 ) 
+                                }  
+                                 
                                 </ul>
                             </nav>
                         </div>

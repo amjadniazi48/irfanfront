@@ -20,7 +20,7 @@ const loadData = async (locale) => {
       <aside id="categories_custom-1" className="widget widget_categories widget_categories_custom" >
         <div className="block-title-4"><h4 className="h5 title-arrow"><span>{locale=='ur-PK'?'زمرہ جات ':'Categories'}</span></h4>
         </div>
-        <ul className={className} style={locale=='en'?{ 'list-style':'none'}:{'list-style':'circle '}}>
+        <ul className={className} style={locale=='en'?{ 'listStyle':'none'}:{'listStyle':'circle '}}>
           {data && data.map((item) => {
             return (
           <li className={`cat-item cat-item-${item.id}`} key={item.id}>
