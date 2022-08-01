@@ -12,7 +12,7 @@ export default function Header() {
                     <div className="btn-group" role="group" aria-label="Basic outlined example">
                         {router.locales && router.locales.map((loc) => {
                             return (
-                                <div>
+                                <div key={key.id}>
                                     <Link href={router.asPath} locale={loc} key={loc.id}>
                                         <a style={{ color: "white"}}> <span>{loc == "en" ? " English |" : "  اردو"}</span>&nbsp;&nbsp;</a>
                                     </Link>
