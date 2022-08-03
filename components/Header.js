@@ -7,10 +7,13 @@ export default function Header() {
     const router = useRouter()
     const changeLanguage = (e)=>{
         const locale= e.target.value
-        router.push('/','/',{locale})
+        router.push('/','/',{locale })
       
     }
- 
+    useEffect(() => {
+        // Prefetch the dashboard page
+        router.prefetch('/')
+      }, [])
     return (
         <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
