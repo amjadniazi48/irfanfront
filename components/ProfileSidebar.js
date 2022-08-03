@@ -1,6 +1,6 @@
 import { API_URL, PER_PAGE } from '@/config/index';
 export default function ProfileSidebar({profileData}) {
-  console.log(profileData.attributes.image.data.attributes.formats.thumbnail.url)
+  console.log(profileData)
     return(
         <aside id="bootnews_author-3" className="widget widget_categories widget_categories_custom">
         <div className="block-area">

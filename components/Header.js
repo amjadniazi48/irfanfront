@@ -5,11 +5,15 @@ import Link from 'next/link';
 export default function Header() {
     const { t, lang } = useTranslation('common')
     const router = useRouter()
+    const changeLanguage = (e)=>{
+        const locale= e.target.value
+        router.push('/','/',{locale})
+    }
     return (
         <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
                 <div className="container p-2">
-                    <div className="btn-group" role="group" aria-label="Basic outlined example">
+                    {/* <div className="btn-group" role="group" aria-label="Basic outlined example">
                         {router.locales && router.locales.map((loc) => {
                             return (
                                 <>
@@ -19,7 +23,11 @@ export default function Header() {
                                 </>
                             )
                         })}
-                    </div>
+                    </div> */}
+                    <select  onChange={changeLanguage} defaultValue={router.locale}>
+                        <option value="en">English</option>
+                        <option value="ur-PK">Urud</option>
+                    </select>
                 </div>
             </div>
             <div className="second-header">
