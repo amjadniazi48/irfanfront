@@ -9,6 +9,9 @@ export default function Header() {
         const locale= e.target.value
         router.push('/','/',{locale})
     }
+    useEffect(() => {
+        i18n.changeLanguage(locale);
+      }, [location]);
     return (
         <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
