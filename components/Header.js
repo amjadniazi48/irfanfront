@@ -11,7 +11,7 @@ export default function Header() {
     }
     useEffect(() => {
         i18n.changeLanguage(locale);
-      }, [location]);
+      }, [router.locale]);
     return (
         <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
