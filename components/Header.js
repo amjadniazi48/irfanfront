@@ -11,7 +11,12 @@ export default function Header() {
         router.push('/','/',{locale })
       
     }
-   
+    useEffect(() => {
+        let dir =locale == "ur-PK" ? "rtl" : "ltr";
+        let lang = locale == "ur-PK" ? "ur-PK" : "en";
+        document.querySelector("html").setAttribute("dir", dir);
+        document.querySelector("html").setAttribute("lang", lang);
+      }, [locale]);
     return (
         <header className="header" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
