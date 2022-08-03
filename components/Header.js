@@ -12,30 +12,21 @@ export default function Header() {
         router.push('/','/',{locale })
       
     }
+    //this is used to get the proper dir after changing the locale
     useEffect(() => {
         let dir =locale == "ur-PK" ? "rtl" : "ltr";
         let lang = locale == "ur-PK" ? "ur-PK" : "en";
         document.querySelector("html").setAttribute("dir", dir);
         document.querySelector("html").setAttribute("lang", lang);
       }, [locale]);
+      //==========================
     return (
         <header className="header" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
                 <div className="container p-2">
-                    {/* <div className="btn-group" role="group" aria-label="Basic outlined example">
-                        {router.locales && router.locales.map((loc) => {
-                            return (
-                                <>
-                                    <Link href={router.asPath} locale={loc} key={loc.id}>
-                                        <a style={{ color: "white"}}> <span>{loc == "en" ? " English |" : "  اردو"}</span>&nbsp;&nbsp;</a>
-                                    </Link>
-                                </>
-                            )
-                        })}
-                    </div> */}
                     <select  onChange={changeLanguage} defaultValue={router.locale}>
                         <option value="en">English</option>
-                        <option value="ur-PK">Urud</option>
+                        <option value="ur-PK">Urdu</option>
                     </select>
                 </div>
             </div>
