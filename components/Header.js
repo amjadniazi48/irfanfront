@@ -1,5 +1,5 @@
 import React, {  useEffect } from "react";
-import React, {  useRouter } from "react";
+import {  useRouter } from "react";
 
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link';
