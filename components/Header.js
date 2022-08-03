@@ -1,4 +1,4 @@
-import { useRouter,useEffect } from 'next/router';
+import React, { useRouter, useEffect } from "react";
 
 import useTranslation from 'next-translate/useTranslation'
 import Link from 'next/link';
