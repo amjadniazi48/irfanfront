@@ -8,7 +8,7 @@ export default function Header() {
     const changeLanguage = (e)=>{
         const locale= e.target.value
         router.push('/','/',{locale:"ur-PK"})
-        router.reload()
+      
     }
  
     return (
