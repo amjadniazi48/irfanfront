@@ -5,17 +5,15 @@ import Link from 'next/link';
 export default function Header() {
     const { t, lang } = useTranslation('common')
     const router = useRouter()
+    const {locale}=router;
     const changeLanguage = (e)=>{
         const locale= e.target.value
         router.push('/','/',{locale })
       
     }
-    useEffect(() => {
-        // Prefetch the dashboard page
-        router.prefetch('/')
-      }, [])
+   
     return (
-        <header className="header" dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
+        <header className="header" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
                 <div className="container p-2">
                     {/* <div className="btn-group" role="group" aria-label="Basic outlined example">
