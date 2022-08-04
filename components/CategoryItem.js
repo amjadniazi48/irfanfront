@@ -50,11 +50,12 @@ const ArticleItem = ({ item }) => {
               </span>
               <time className="news-date" >{new Date(item.attributes.createdAt).toLocaleDateString(locale)} </time>
             </div>
-            <p className="card-text">{item.attributes.description.slice(0, 250) + '...'}</p>
+            <p className="card-text">{item.attributes.description.slice(0, 400) + '...'}</p>
           </div>
         </div>
       </div>
     </article>
+  
   )
 }
 export default ArticleItem
