@@ -40,32 +40,30 @@ const CategoryPage = () => {
       `;
   const { data, loading, error } = useQuery(QUERY, { variables: { catSlug, locale } });
 
- // console.log(data.posts.data.attributes.categories.data.attributes.name)
+  // console.log(data.posts.data.attributes.categories.data.attributes.name)
   //console.log(error)
   try {
     return (
-      <div className="col-12 mt-5 " style={{marginLeft:'10px'}}>
-          <div className="block-title-4 text-center ">
-                        <h1><span>{data.posts && data.posts.data[0].attributes.categories.data[0].attributes.name}</span></h1>
-                        </div>
-        
-        {data.posts && data.posts.data.map((item) => {
-          return (
-            <div className="row" key={item.id}>
-              <div className="entry-content post-content post-page">
-                <CategoryItem key={item.id} item={item} ></CategoryItem>
-
+      <div className="row">
+        <div className="col-md-12">
+          <div className="block-area">
+            <div className="col-12 mt-5 " style={{ marginLeft: '10px' }}>
+              <div className="block-title-4 text-center ">
+                <h1><span>{data.posts && data.posts.data[0].attributes.categories.data[0].attributes.name}</span></h1>
               </div>
-              <hr></hr>
             </div>
-           
-          )
-        })}
+            {data.posts && data.posts.data.map((item) => {
+              return (
+                <CategoryItem key={item.id} item={item} ></CategoryItem>
+                )
+            })}
+          </div>
+        </div>
       </div>
     )
   }
   catch {
-    return <p style={{ marginTop: "10px" ,marginRight:'10%'}}>Oops! No Data please return to <Link href="/"><a>Home Page</a></Link></p>;
+    return <p style={{ marginTop: "10px", marginRight: '10%' }}>Oops! No Data please return to <Link href="/"><a>Home Page</a></Link></p>;
   }
 
 }

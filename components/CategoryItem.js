@@ -13,17 +13,18 @@ const ArticleItem = ({ item }) => {
     imageSrc = '/images/pentwo.jpg';
   }
   return (
-    <article className="card card-full hover-a py-4 post-1305 post type-post status-publish format-video has-post-thumbnail hentry category-video tag-science tag-starvation post_format-post-format-video" >
-      <div className="col-sm-12 col-md-12 col-lg-12">
-        <div className="image-wrapper">
-          <Link href={`/posts/${item.attributes.slug}`}>
-            <a>
-              <Image
-                src={item.attributes.image.data[0].attributes.formats.thumbnail.url}
-                width={150}
-                height={150}
-              />
-              {/* for video
+    <article className="card card-full hover-a py-4 pl-5 post-1305 post type-post status-publish format-video has-post-thumbnail hentry category-video tag-science tag-starvation post_format-post-format-video">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="image-wrapper">
+            <Link href={`/posts/${item.attributes.slug}`}>
+              <a>
+                <Image
+                  src={item.attributes.image.data[0].attributes.formats.thumbnail.url}
+                  width={500}
+                  height={281}
+                />
+                {/* for video
                   <div className="post-type-icon">
                   <span className="fa-stack-sea text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -32,25 +33,25 @@ const ArticleItem = ({ item }) => {
                   </span>
                 </div> */}
 
-            </a>
-          </Link>
-         
-        </div>
-      </div>
-      <div className="col-sm-12 col-md-12 col-lg-12">
-        <div className="card-body pt-3 pt-sm-0 pt-md-3 pt-lg-0">
-          <h3 className="card-title h2 h3-sm h2-md">
-            <Link href={`/posts/${item.attributes.slug}`}>
-              <a>{item.attributes.title}</a>
+              </a>
             </Link>
-          </h3>
-          <div className="card-text mb-2 text-muted small">
-            <span className="fw-bold d-none d-sm-inline me-1">
-              <a href="#" title="Posts by aribudin" rel="author">aribudin</a>
-            </span>
-            <time className="news-date" >{new Date(item.attributes.createdAt).toLocaleDateString(locale)} </time>
           </div>
-          <p className="card-text">{item.attributes.description.slice(0, 250) + '...'}</p>
+        </div>
+        <div className="col-md-8">
+          <div className="card-body pt-3 pt-sm-0 pt-md-3 pt-lg-0">
+            <h3 className="card-title h2 h3-sm h2-md">
+              <Link href={`/posts/${item.attributes.slug}`}>
+                <a>{item.attributes.title}</a>
+              </Link>
+            </h3>
+            <div className="card-text mb-2 text-muted small">
+              <span className="fw-bold d-none d-sm-inline me-1">
+                <a href="#" title="Posts by aribudin" rel="author">aribudin</a>
+              </span>
+              <time className="news-date" >{new Date(item.attributes.createdAt).toLocaleDateString(locale)} </time>
+            </div>
+            <p className="card-text">{item.attributes.description.slice(0, 250) + '...'}</p>
+          </div>
         </div>
       </div>
     </article>
