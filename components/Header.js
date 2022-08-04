@@ -23,11 +23,15 @@ export default function Header() {
     return (
         <header className="header" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
             <div className="top-menu bg-dark">
-                <div className="container p-2">
-                    <select  onChange={changeLanguage} defaultValue={router.locale}>
+                <div className="container ">
+              
+                   <div className="col-3 p-2 w-25">
+                    <select className="form-select form-select-sm"  style={{width:'40%'}}onChange={changeLanguage} defaultValue={router.locale}>
                         <option value="en">English</option>
-                        <option value="ur-PK">Urdu</option>
+                        <option value="ur-PK">اردو</option>
                     </select>
+                    </div>
+                    
                 </div>
             </div>
             <div className="second-header">
