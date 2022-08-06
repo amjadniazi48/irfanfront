@@ -118,7 +118,7 @@ export default function Home({ profileData }) {
   )
 }
 export async function getServerSideProps({ locale }) {
-  const res = await fetch(`${NEXT_PUBLIC_API_URL}/api/profile?populate=image&locale=${locale}`)
+  const res = await fetch(`${API_URL}/api/profile?populate=image&locale=${locale}`)
   const data = await res.json()
   const profileData = data['data']
 

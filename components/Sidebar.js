@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import ProfileSidebar from '@/components/ProfileSidebar';
 const loadData = async (locale) => {
-  const response = await fetch(`${NEXT_PUBLIC_API_URL}/api/categories?` + new URLSearchParams({
+  const response = await fetch(`${API_URL}/api/categories?` + new URLSearchParams({
     locale: locale,
    
   }))
