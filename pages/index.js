@@ -9,7 +9,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import useSWR from 'swr'
 import Publications from '@/components/Pulbications';
-
 const loadData = async (locale) => {
   const response = await fetch(`${API_URL}/api/posts?sort=createdAt:desc&` + new URLSearchParams({
     locale: locale,

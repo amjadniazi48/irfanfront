@@ -2,7 +2,7 @@ import { API_URL, PER_PAGE } from '@/config/index';
 import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
 export default function ProfileSidebar({profileData}) {
-  console.log(profileData)
+ //console.log(profileData)
   
     return(
         <aside id="bootnews_author-3" className="widget widget_categories widget_categories_custom">
