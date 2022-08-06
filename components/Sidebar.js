@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { API_URL, PER_PAGE } from '@/config/index';
 import useSWR from 'swr'
 import ProfileSidebar from '@/components/ProfileSidebar';
 const loadData = async (locale) => {
