@@ -3,10 +3,7 @@ import { API_URL, PER_PAGE } from '@/config/index';
 import useSWR from 'swr'
 import ProfileSidebar from '@/components/ProfileSidebar';
 const loadData = async (locale) => {
-  const response = await fetch(`${API_URL}/api/categories?` + new URLSearchParams({
-    locale: locale,
-   
-  }))
+  const response = await fetch(`${API_URL}/api/categories?populate=posts&locale=${locale}`)
   const data = await response.json();
   return data['data'];
 };
@@ -14,7 +11,8 @@ const loadData = async (locale) => {
   const { locale, locales } = useRouter();
   let className='';
   const { data } = useSWR([locale, "categoires"], loadData);
-  console.log(data)
+  console.log(data.attributes.posts.length)
+ 
   if(locale=="en"){className='list-unstyled sidebar-link dark before-caret-dark custom-category'} else {className='list-unstyled sidebar-link dark  custom-category'}
   return (
     <aside className="col-md-4 widget-area end-sidebar-lg" id="right-sidebar"  dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
