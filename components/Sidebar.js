@@ -11,8 +11,8 @@ const loadData = async (locale) => {
   const { locale, locales } = useRouter();
   let className='';
   const { data } = useSWR([locale, "categoires"], loadData);
-  //console.log(data.attributes.posts.length)
- 
+console.log(data)
+
   if(locale=="en"){className='list-unstyled sidebar-link dark before-caret-dark custom-category'} else {className='list-unstyled sidebar-link dark  custom-category'}
   return (
     <aside className="col-md-4 widget-area end-sidebar-lg" id="right-sidebar"  dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
@@ -25,7 +25,7 @@ const loadData = async (locale) => {
             return (
           <li className={`cat-item cat-item-${item.id}`} key={item.id}>
               <a href="#"><span className="cat-name">{item.attributes.name}</span> 
-              &nbsp;<span className="badge bg-primary rounded-pill">5</span></a>
+              &nbsp;<span className="badge bg-primary rounded-pill">{item.attributes.posts.data.length}</span></a>
             </li>
             )
          })}
