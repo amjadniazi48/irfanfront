@@ -11,7 +11,7 @@ const loadData = async (locale) => {
   const { locale, locales } = useRouter();
   let className='';
   const { data } = useSWR([locale, "categoires"], loadData);
-  console.log(data.attributes.posts.length)
+  //console.log(data.attributes.posts.length)
  
   if(locale=="en"){className='list-unstyled sidebar-link dark before-caret-dark custom-category'} else {className='list-unstyled sidebar-link dark  custom-category'}
   return (
