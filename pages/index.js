@@ -1,28 +1,52 @@
 
 import useTranslation from 'next-translate/useTranslation'
+import { gql, useQuery } from '@apollo/client';
 import { API_URL, PER_PAGE } from '@/config/index';
 import Carousel from 'react-bootstrap/Carousel';
 import Sidebar from '@/components/Sidebar';
 import ArticleItem from '@/components/ArticleItem';
+import Pagination from '@/components/Pagination';
 import { useRouter } from "next/router";
 import Link from 'next/link';
 import Image from 'next/image';
-import useSWR from 'swr'
 import Publications from '@/components/Pulbications';
-const loadData = async (locale) => {
-  const response = await fetch(`${API_URL}/api/posts?sort=createdAt:desc&` + new URLSearchParams({
-    locale: locale,
-    populate: 'image',
-  }))
-  const data = await response.json();
-  return data['data'];
-};
-
-export default function Home({ profileData }) {
+export default function Home({ postsData,page,total }) {
   const { t, lang } = useTranslation('common')
   const { locale, locales } = useRouter();
-  const { data } = useSWR([locale, "articles"], loadData);
-  let imageSrc = null;
+  const QUERY = gql `query  getProfile($locale : I18NLocaleCode!){
+    profile(locale:$locale) {
+       data {
+         id
+         attributes {
+           name  
+           description
+           image {
+             data{
+                attributes{
+                 formats
+               }
+             }
+           }
+        
+         }
+       }
+     }
+   }  
+   `
+  const { data, loading, error } = useQuery(QUERY, { variables: {  locale } });
+   //console.log(error)
+   
+  
+   //console.log(  JSON.stringify(data))
+
+ 
+  
+   //return <div>{JSON.stringify(profileData)}</div>;
+ 
+  // render data
+ 
+  //console.log(profileData)
+  let imageSrc ;
   return (
     <main id="content" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
       <div className="container">
@@ -31,14 +55,14 @@ export default function Home({ profileData }) {
             <div className="gap-15"></div>
             <div className="mb-5">
               <div className="position-relative overflow-hidden">
-                <Carousel >
-                  {data && data.map((item) => {
+                <Carousel>
+                  {postsData && postsData.map((item) => {
                   try{
-                    imageSrc = item.attributes.image.data[0].attributes.formats.medium.url
+                    imageSrc = item.attributes.image.data[0].attributes.formats.thumbnail.url
                       
                     }
                     catch {
-                      imageSrc = '/images/pentwo.jpg';
+                     imageSrc = '/images/pentwo.jpg';
                     }
                     if (item.attributes.type == "Slider" && item.attributes.type != "Normal" && item.attributes.type != "Publication")
                       return (
@@ -60,19 +84,15 @@ export default function Home({ profileData }) {
                   })}
                 </Carousel>
               </div>
-
-              <div className="col-12 mb-4" > 
-
-                <div className="block-area p-4 border bg-light-black" >
-
-                 
-                    <h4 className="h5 " >
+              <div className="col-12 mb-4"> 
+                <div className="block-area p-4 border bg-light-black">
+                    <h4 className="h5" >
                       <span>{t('common:publications')}</span>
                     </h4>
                    <hr></hr>
                   <div className="row"  dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
 
-                    {data && data.map((item) => {
+                    {postsData && postsData.map((item) => {
                       if (item.attributes.type == "Publication" && item.attributes.type != "Normal" && item.attributes.type != "Slider")
                         return <Publications key={item.id} item={item} ></Publications>
                     })}
@@ -85,29 +105,17 @@ export default function Home({ profileData }) {
                         <h3 className="h3"><span>{t('common:currentPosts')}</span></h3>
                         </div>
                       <div className="border-bottom-last-0 first-pt-0">
-                        {data && data.map((item) => {
+                        {postsData && postsData.map((item) => {
                           if (item.attributes.type == "Normal" && item.attributes.type != "Slider" && item.attributes.type != "Publication")
                             return <ArticleItem key={item.id} item={item} ></ArticleItem>
                         })}
                       </div>
                     </div>
-                    <div className="clearfix my-4">
-                      <nav className="float-start" aria-label="Posts navigation">
-                        <ul className="pagination">
-                          <li className="page-item active">
-                            <span aria-current="page" className="page-link current">1</span></li>
-                          <li className="page-item ">
-                            <a className="page-link" href="https://demo.bootstrap.news/travel/page/2/">2</a></li>
-                          <li className="page-item ">
-                            <a className="page-link" href="https://demo.bootstrap.news/travel/page/3/">3</a></li>
-                          <li className="page-item ">
-                            <a className="next page-link" href="https://demo.bootstrap.news/travel/page/2/">&raquo;</a></li>
-                        </ul>
-                      </nav>
-                      <span className="py-2 float-end"></span>
-                    </div>
+                    <Pagination page={page} total ={total} ></Pagination>
                   </div>
-                  <Sidebar profileData={profileData} />
+                  {data &&
+                   <Sidebar profileData={data} />
+                   }
                 </div>
               </div>
             </div>
@@ -117,18 +125,24 @@ export default function Home({ profileData }) {
     </main>
   )
 }
-export async function getServerSideProps({ locale }) {
-  const res = await fetch(`${API_URL}/api/profile?populate=image&locale=${locale}`)
+export async function getServerSideProps({ locale,query:{page=1}}) {
+  const start =  +page==1 ? 0 : (+page-1)*PER_PAGE
+  //total 
+  //const totalRes = await fetch(`${API_URL}/events/count`)
+ 
+  const res = await fetch(`${API_URL}/api/posts?populate=image&_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}&locale=${locale}`)
   const data = await res.json()
-  const profileData = data['data']
-
-  if (!profileData) {
+  const totalRes = await fetch(`${API_URL}/api/posts/count`)
+  const total = await totalRes.json()
+  const postsData = data['data']
+  
+  if (!postsData) {
     return {
       notFound: true,
     }
   }
 
   return {
-    props: { profileData }, // will be passed to the page component as props
+    props: { postsData,page:+page, total }, // will be passed to the page component as props
   }
 }

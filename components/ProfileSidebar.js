@@ -2,7 +2,7 @@ import { API_URL, PER_PAGE } from '@/config/index';
 import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
 export default function ProfileSidebar({profileData}) {
- //console.log(profileData)
+ console.log(profileData.profile.data.attributes.image.data.attributes.formats.thumbnail.url)
   
     return(
         <aside id="bootnews_author-3" className="widget widget_categories widget_categories_custom">
@@ -11,10 +11,10 @@ export default function ProfileSidebar({profileData}) {
             <div className="about-content text-center">
             <div className="card">
               <Image  width={250} height={300} quality={100}
-                   alt="profile images" src={profileData.attributes && profileData.attributes.image.data.attributes.formats.thumbnail.url} />           
+                   alt="profile images" src={ profileData.profile.data.attributes.image.data.attributes.formats.thumbnail.url} />           
                 <div className="card-body">
-                <h5 className="card-title">{profileData.attributes.name}</h5>
-                  <p className="card-text " style={{textAlign:"text-justify"}}>{profileData.attributes.description}</p>
+                <h5 className="card-title">{profileData.profile.data.attributes.name}</h5>
+                  <p className="card-text " style={{textAlign:"text-justify"}}>{profileData.profile.data.attributes.description}</p>
                 </div>
               </div>
            </div>     

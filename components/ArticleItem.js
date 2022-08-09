@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 const ArticleItem=({item})=>{
   const {locale} = useRouter()
-    const imageSrc = null;
+    let imageSrc = null;
     try {
       imageSrc = item.attributes.image.data[0].attributes.formats.medium.url
        
