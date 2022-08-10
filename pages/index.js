@@ -10,7 +10,8 @@ import { useRouter } from "next/router";
 import Link from 'next/link';
 import Image from 'next/image';
 import Publications from '@/components/Pulbications';
-export default function Home({ postsData,page,total }) {
+export default function Home({ postsData,page,paginationData}) {
+
   const { t, lang } = useTranslation('common')
   const { locale, locales } = useRouter();
   
@@ -112,7 +113,7 @@ export default function Home({ postsData,page,total }) {
                         })}
                       </div>
                     </div>
-                    <Pagination page={page} total ={total} ></Pagination>
+                    <Pagination page={page} paginationData ={paginationData} ></Pagination>
                   </div>
                   {data &&
                    <Sidebar profileData={data} />
@@ -131,11 +132,12 @@ export async function getServerSideProps({ locale,query:{page=1}}) {
   //total 
   //const totalRes = await fetch(`${API_URL}/events/count`)
  
-  const res = await fetch(`${API_URL}/api/posts?populate=image&_sort=date:ASC&_limit=${PER_PAGE}&_start=${start}&locale=${locale}`)
+  const res = await fetch(`${API_URL}/api/posts?populate=image&sort[0]=publishedAt:desc&pagination[limit]=${PER_PAGE}&pagination[start]=${start}&locale=${locale}`)
   const data = await res.json()
-  const totalRes = await fetch(`${API_URL}/api/posts/count`)
-  const total = await totalRes.json()
+
   const postsData = data['data']
+  const paginationData= data['meta'];
+  //console.log('Hello this is the post page'+JSON.stringify(postsData))
   
   if (!postsData) {
     return {
@@ -144,6 +146,6 @@ export async function getServerSideProps({ locale,query:{page=1}}) {
   }
 
   return {
-    props: { postsData,page:+page, total }, // will be passed to the page component as props
+    props: { postsData,page:+page,paginationData}, // will be passed to the page component as props
   }
 }

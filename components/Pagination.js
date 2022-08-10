@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { PER_PAGE } from '@/config/index'
 import { useState } from 'react';
-export default function Pagination({ page, total }) { 
+export default function Pagination({ page, paginationData }) { 
+  const total = paginationData.pagination.total;
  
-    const lastPage = Math.ceil(total / PER_PAGE)
-
+   const lastPage = Math.ceil(total / PER_PAGE)
+//console.log("this is the last page"+lastPage)
   //Total Number of Pages
-  const totalPages = [];
+   const totalPages = [];
   for (var i = 1; i <= lastPage; i++) {
       totalPages.push(i);
    }
-   const [pageNumbers,setPageNumbers]=useState(totalPages);
+   const [pageNumbers,setPageNumbers] = useState(totalPages);
    //==============================
   return (
     <div className="container text-center">
