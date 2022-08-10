@@ -13,6 +13,7 @@ import Publications from '@/components/Pulbications';
 export default function Home({ postsData,page,total }) {
   const { t, lang } = useTranslation('common')
   const { locale, locales } = useRouter();
+  
   const QUERY = gql `query  getProfile($locale : I18NLocaleCode!){
     profile(locale:$locale) {
        data {
