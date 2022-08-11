@@ -1,7 +1,7 @@
 
 import useTranslation from 'next-translate/useTranslation'
 import { gql, useQuery } from '@apollo/client';
-import { API_URL, PER_PAGE } from '@/config/index';
+import { API_URL, PER_PAGE, NO_OF_SLIDES} from '@/config/index';
 import Carousel from 'react-bootstrap/Carousel';
 import Sidebar from '@/components/Sidebar';
 import ArticleItem from '@/components/ArticleItem';
@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import Link from 'next/link';
 import Image from 'next/image';
 import Publications from '@/components/Pulbications';
-export default function Home({ postsData,page,paginationData}) {
+export default function Home({ postsData,page,paginationData,sliderData,publicationData}) {
 
   const { t, lang } = useTranslation('common')
   const { locale, locales } = useRouter();
@@ -36,19 +36,7 @@ export default function Home({ postsData,page,paginationData}) {
    }  
    `
   const { data, loading, error } = useQuery(QUERY, { variables: {  locale } });
-   //console.log(error)
-   
-  
-   //console.log(  JSON.stringify(data))
-
- 
-  
-   //return <div>{JSON.stringify(profileData)}</div>;
- 
-  // render data
- 
-  //console.log(profileData)
-  let imageSrc ;
+   let imageSrc;
   return (
     <main id="content" dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
       <div className="container">
@@ -58,7 +46,7 @@ export default function Home({ postsData,page,paginationData}) {
             <div className="mb-5">
               <div className="position-relative overflow-hidden">
                 <Carousel>
-                  {postsData && postsData.map((item) => {
+                  {sliderData && sliderData.map((item) => {
                   try{
                     imageSrc = item.attributes.image.data[0].attributes.formats.thumbnail.url
                       
@@ -66,7 +54,7 @@ export default function Home({ postsData,page,paginationData}) {
                     catch {
                      imageSrc = '/images/pentwo.jpg';
                     }
-                    if (item.attributes.type == "Slider" && item.attributes.type != "Normal" && item.attributes.type != "Publication")
+                   
                       return (
                         <Carousel.Item>
                           <Image
@@ -94,7 +82,7 @@ export default function Home({ postsData,page,paginationData}) {
                    <hr></hr>
                   <div className="row"  dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
 
-                    {postsData && postsData.map((item) => {
+                    {publicationData && publicationData.map((item) => {
                       if (item.attributes.type == "Publication" && item.attributes.type != "Normal" && item.attributes.type != "Slider")
                         return <Publications key={item.id} item={item} ></Publications>
                     })}
@@ -132,12 +120,25 @@ export async function getServerSideProps({ locale,query:{page=1}}) {
   //total 
   //const totalRes = await fetch(`${API_URL}/events/count`)
  
-  const res = await fetch(`${API_URL}/api/posts?populate=image&sort[0]=publishedAt:desc&pagination[limit]=${PER_PAGE}&pagination[start]=${start}&locale=${locale}`)
+  const res = await fetch(`${API_URL}/api/posts?&populate=image&sort[0]=publishedAt:desc&pagination[limit]=${PER_PAGE}&pagination[start]=${start}&locale=${locale}&filters[type][$eq]=Normal`)
   const data = await res.json()
+
+//for slider
+const resSlider = await fetch(`${API_URL}/api/posts?&populate=image&sort[0]=publishedAt:desc&pagination[limit]=${NO_OF_SLIDES}&locale=${locale}&filters[type][$eq]=Slider`)
+const sData = await resSlider.json()
+const sliderData= await sData["data"];
+
+//for publications
+const resPub = await fetch(`${API_URL}/api/posts?&populate=image&sort[0]=publishedAt:desc&pagination[limit]=${NO_OF_SLIDES}&locale=${locale}&filters[type][$eq]=Publication`)
+const pData = await resPub.json()
+const publicationData= await pData["data"];
+//=========================
+console.log(sliderData)
+//================
 
   const postsData = data['data']
   const paginationData= data['meta'];
-  //console.log('Hello this is the post page'+JSON.stringify(postsData))
+  //console.log(postsData)
   
   if (!postsData) {
     return {
@@ -146,6 +147,6 @@ export async function getServerSideProps({ locale,query:{page=1}}) {
   }
 
   return {
-    props: { postsData,page:+page,paginationData}, // will be passed to the page component as props
+    props: { postsData,page:+page,paginationData,sliderData,publicationData}, // will be passed to the page component as props
   }
 }
