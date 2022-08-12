@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(()=>{
 
     const checkUserLoggedIn = async (user) => {
-      const res = await fetch(`${NEXT_URL}/api/user`)
+      const res = await fetch(`../api/user`)
       const data = await res.json()
   
       if (res.ok) {
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
   // Register user
   const registerme = async (user) => {
    
-    const res = await fetch(`${NEXT_URL}/api/register`, {
+    const res = await fetch(`../api/register`, {
         
       method: 'POST',
       headers: {
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
   //email to admin
   const emailtoadmin = async (user) => {
    console.log(user)
-    const res = await fetch(`${NEXT_URL}/api/adminemail`, {  
+    const res = await fetch(`../api/adminemail`, {  
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
