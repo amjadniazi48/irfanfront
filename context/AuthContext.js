@@ -80,14 +80,14 @@ export const AuthProvider = ({ children }) => {
       }),
     })
     const data = await res.json()
-    console.log(data)
+   
     if (res.ok) {
       setUser(data.user)
        router.push('/posts/add')
       //console.log(data)
     } else {
       setError(data.message)
-      setError(null)
+      //setError(null)
     }
 
   }
