@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
       }),
     })
     const data = await res.json()
-    //console.log(data)
+    console.log(data)
     if (res.ok) {
       setUser(data.user)
        router.push('/posts/add')
@@ -96,7 +96,6 @@ export const AuthProvider = ({ children }) => {
     const res = await fetch(`../api/logout`, {
       method: 'POST',
     })
-
     if (res.ok) {
       setUser(null)
       router.push('/')
