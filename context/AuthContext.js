@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
   }
   //Logout User
   const logout = async () => {
-    const res = await fetch(`${NEXT_URL}/api/logout`, {
+    const res = await fetch(`../api/logout`, {
       method: 'POST',
     })
 
