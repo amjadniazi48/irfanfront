@@ -71,7 +71,7 @@ export default function Menu({ menus }) {
                                 })}
                                  {user && t? (
                                      <>
-                                  <li id="menu-item" className="nav-item"><Link href={'/ur-PK/posts/add'}><a className="nav-link" style={{color:'#F54637'}}>{t('common:login')}</a></Link></li>  
+                                  <li id="menu-item" className="nav-item"><Link href={'/ur-PK/posts/add'}><a className="nav-link" style={{color:'#F54637'}}>{t('common:addPost')}</a></Link></li>  
                                  <li id="menu-item" className="nav-item"><a href="javascript:;" onClick={() => logout()} className="nav-link" style={{color:'#F54637'}}>{t('common:logout')}({user.username})</a></li>
                                     </>
                                  ):
