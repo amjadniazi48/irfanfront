@@ -3,7 +3,7 @@ import Alert from 'react-bootstrap/Alert'
 import useTranslation from 'next-translate/useTranslation'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
