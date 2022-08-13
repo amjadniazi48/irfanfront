@@ -20,7 +20,7 @@ export default function AddPostPage({ token }) {
     const { locale, locales } = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (e) => {
-        const myPost = { data: { title, slug, description } }
+        const myPost = { data: { title, slug, description,locale} }
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
