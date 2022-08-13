@@ -34,9 +34,7 @@ export default function AddPostPage({ token }) {
         if (!response.ok) {
             console.error('Something Went Wrong')
             setShow(false)
-            return
-            
-           
+             
         }
         else {
          console.log("Record has been added")
@@ -48,8 +46,8 @@ export default function AddPostPage({ token }) {
             <Container className='mt-3 mb-3' dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
                 {show
-                    ? <Alert variant="success">Hurray! You're a genius.</Alert>
-                    : <Alert variant="danger">Oops! Try again</Alert>
+                    ? <Alert className="text-center"variant="success">آپ کی پوسٹ ایڈ ھو گئ ھے</Alert>
+                    : <p></p>
                 }
                     <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
