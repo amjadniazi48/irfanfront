@@ -27,6 +27,8 @@ export default function AddPostPage({ token }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(myPost)
         };
+
+        
         const response = await fetch(`${API_URL}/api/posts`, requestOptions);
         const post = await response.json()
         if (!response.ok) {
@@ -35,7 +37,8 @@ export default function AddPostPage({ token }) {
             return
         }
         else {
-            useEffect(() => {post && setShow(true)})
+         console.log("Record has been added")
+         setShow(true)
          
         }
     }
