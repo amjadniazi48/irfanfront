@@ -35,7 +35,7 @@ export default function AddPostPage({ token }) {
             return
         }
         else {
-            useEffect(() => {response.message && setShow(true)})
+            useEffect(() => {response.ok && setShow(true)})
         }
     }
     return (
