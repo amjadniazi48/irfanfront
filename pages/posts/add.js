@@ -15,6 +15,7 @@ import { API_URL } from "@/config/index";
 export default function AddPostPage({ token }) {
     const { t, lang } = useTranslation('common')
     const [title, setTitle] = useState("");
+    const [show, setShow] = useState(false);
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
     const { locale, locales } = useRouter();
