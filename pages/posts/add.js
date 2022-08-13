@@ -36,17 +36,18 @@ export default function AddPostPage({ token }) {
         }
         else {
             useEffect(() => {post && setShow(true)})
-            console.log("I m in use Effect")
+         
         }
     }
     return (
 
             <Container className='mt-3 mb-3' dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
-                <Alert  style={{width:"40em",textAlign:"center"}} show={show} variant="success"  onClose={() => setShow(false)} dismissible>آپ کی پو  سٹ  ایڈ ھو گئ ھے</Alert>  
+               
                     <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
                     <Col md={12} >
+                    <Alert  style={{width:"40em",textAlign:"center"}} show={show} variant="success"  onClose={() => setShow(false)} dismissible>آپ کی پو  سٹ  ایڈ ھو گئ ھے</Alert>  
                         <Card className='bg-light pb-3' style={{ width: '70%', 'text-align': 'left' }}>
                             <Card.Body>
                                 <Form onSubmit={handleSubmit(onSubmit)} >
