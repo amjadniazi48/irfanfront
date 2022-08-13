@@ -32,21 +32,25 @@ export default function AddPostPage({ token }) {
         const response = await fetch(`${API_URL}/api/posts`, requestOptions);
         const post = await response.json()
         if (!response.ok) {
-            console.error('Something Went Wrong'), {
-            };
+            console.error('Something Went Wrong')
+            setShow(false)
             return
+            
+           
         }
         else {
          console.log("Record has been added")
-      
-         
+           setShow  (true)     
         }
     }
     return (
 
             <Container className='mt-3 mb-3' dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
-               
+                {show
+                    ? <Alert variant="success">Hurray! You're a genius.</Alert>
+                    : <Alert variant="danger">Oops! Try again</Alert>
+                }
                     <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
                     <Col md={12} >
