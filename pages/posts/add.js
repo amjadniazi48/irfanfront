@@ -26,7 +26,7 @@ export default function AddPostPage({ token }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(myPost)
         };
-        const response = await fetch(`${API_URL}/api/posts`, requestOptions);
+        const response = await fetch(`${API_URL}/api/posts?locale={ur-PK}`, requestOptions);
         const post = await response.json()
         if (!response.ok) {
             console.error('Something Went Wrong'), {
