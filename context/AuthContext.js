@@ -83,7 +83,7 @@ export const AuthProvider = ({ children }) => {
    
     if (res.ok) {
       setUser(data.user)
-       router.push('/posts/add')
+       router.push('/ur-PK/posts/add')
       //console.log(data)
     } else {
       setError(data.message)
