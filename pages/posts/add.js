@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { BsFillDice6Fill } from "react-icons/bs";
+import Alert from 'react-bootstrap/Alert'
 import useTranslation from 'next-translate/useTranslation'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -34,13 +34,14 @@ export default function AddPostPage({ token }) {
             return
         }
         else {
-            console.log('Record has been added')
+            useEffect(() => {response.message && setShow(true)})
         }
     }
     return (
 
             <Container className='mt-3 mb-3' dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
+                <Alert  style={{width:"40em",textAlign:"center"}} show={show} variant="danger"  onClose={() => setShow(false)} dismissible>آپ کی پو  سٹ  ایڈ ھو گئ ھے</Alert>  
                     <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
                     <Col md={12} >
