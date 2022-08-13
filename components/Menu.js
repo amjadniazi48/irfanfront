@@ -76,7 +76,7 @@ export default function Menu({ menus }) {
                                  ):
                                  (
                                      <>
-                                
+                                  <li id="menu-item" className="nav-item"><Link href={'/ur-PK/posts/add'}><a className="nav-link" style={{color:'#F54637'}}>{t('common:login')}</a></Link></li>  
                                     </>
                                  ) 
                                 }  
