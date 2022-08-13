@@ -17,7 +17,7 @@ export default function AddPostPage({ token }) {
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");
     const [description, setDescription] = useState("");
-    let router = useRouter();
+    const { locale, locales } = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async (e) => {
         const myPost = { data: { title, slug, description } }
@@ -26,7 +26,7 @@ export default function AddPostPage({ token }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(myPost)
         };
-        const response = await fetch(`${API_URL}/api/posts?locale={ur-PK}`, requestOptions);
+        const response = await fetch(`${API_URL}/api/posts?locale=${locale}`, requestOptions);
         const post = await response.json()
         if (!response.ok) {
             console.error('Something Went Wrong'), {
@@ -39,7 +39,7 @@ export default function AddPostPage({ token }) {
     }
     return (
 
-            <Container className='mt-3 mb-3' dir={router.locale === 'ur-PK' ? 'rtl' : 'ltr'}>
+            <Container className='mt-3 mb-3' dir={locale === 'ur-PK' ? 'rtl' : 'ltr'}>
                 <Row>
                     <p className="h1 mt-2" style={{ 'fontWeight': 'bolder' }}>&nbsp;{t('common:addPost')}</p>
                     <hr></hr>
