@@ -12,10 +12,10 @@ import Col from 'react-bootstrap/Col';
 import { useForm } from "react-hook-form";
 import { API_URL } from "@/config/index";
 import dynamic from 'next/dynamic';
-
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 export default function AddPostPage({ token }) {
-    const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+  
     const { t, lang } = useTranslation('common')
     const [title, setTitle] = useState("");
     const [show, setShow] = useState(false);
@@ -23,9 +23,7 @@ export default function AddPostPage({ token }) {
     const [description, setDescription] = useState("");
     const { locale, locales } = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onEditorStateChange = (editorState) => {
-        setDescription("description", editorState);
-      };
+   
     const onSubmit = async (e) => {
         const myPost = { data: { title, slug, description,locale} }
         const requestOptions = {
@@ -81,9 +79,9 @@ export default function AddPostPage({ token }) {
                                     <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <ReactQuill
                                             theme="snow"
-                                          
+                                            value={description}
                                             placeholder="تفصیل"
-                                            onChange={onEditorStateChange}
+                                            onChange={setDescription}
 
                                         />
                                         {errors.title && <p className="text-danger">Description is required</p>}
