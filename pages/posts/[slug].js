@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { gql, useQuery } from '@apollo/client';
 const PostPage = () => {
+  function createMarkup(c){
+    return {__html: c}
+  }
   const router = useRouter();
   const locale = router.locale;
   const { slug } = router.query;
@@ -52,7 +55,7 @@ const PostPage = () => {
         />
         <div className="card-body">
           <h3>{data.posts.data[0].attributes != undefined ? data.posts.data[0].attributes.title : ''}</h3>
-          <p>{data.posts.data[0].attributes != undefined ? data.posts.data[0].attributes.description : ''}</p>
+          {data.posts.data[0].attributes &&  <div dangerouslySetInnerHTML={createMarkup(data.posts.data[0].attributes.description)}></div>}
         </div>
       </div>
     );
