@@ -38,7 +38,7 @@ const PostPage = () => {
     return (<p>No Data</p>);
   }
   try {
-    imageSrc = data.posts.data[0].attributes.image.data[0].attributes.formats.medium.url
+    imageSrc = data.posts.data[0].attributes && data.posts.data[0].attributes.image.data[0].attributes.formats.medium.url
   }
   catch {
     imageSrc = '/images/pentwo.jpg';
