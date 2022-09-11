@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { gql, useQuery } from '@apollo/client';
 import CategoryItem from "@/components/CategoryItem";
 const CategoryPage = () => {
+
+ 
   const router = useRouter();
   const locale = router.locale;
   const { catSlug } = router.query;

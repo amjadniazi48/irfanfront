@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 import Image from 'next/image';
 import Link from 'next/link';
 const ArticleItem = ({ item }) => {
+  function createMarkup(c){
+    return {__html: c}
+  }
   const { locale } = useRouter()
   const imageSrc = null;
   try {
@@ -50,7 +53,7 @@ const ArticleItem = ({ item }) => {
               </span>
               <time className="news-date" >{new Date(item.attributes.createdAt).toLocaleDateString(locale)} </time>
             </div>
-            <p className="card-text">{item.attributes.description.slice(0, 400) + '...'}</p>
+            <div className='card-text' dangerouslySetInnerHTML={createMarkup(item.attributes.description.slice(0,400)+'...')}></div>
           </div>
         </div>
       </div>
