@@ -20,7 +20,7 @@ const ArticleItem = ({ item }) => {
             <Link href={`/posts/${item.attributes.slug}`}>
               <a>
                 <Image
-                  src={item.attributes.image.data[0].attributes.formats.thumbnail.url}
+                  src={imageSrc}
                   width={500}
                   height={281}
                 />

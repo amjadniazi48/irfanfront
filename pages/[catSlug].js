@@ -40,7 +40,7 @@ const CategoryPage = () => {
       `;
   const { data, loading, error } = useQuery(QUERY, { variables: { catSlug, locale } });
 
-  // console.log(data.posts.data.attributes.categories.data.attributes.name)
+  //console.log(data)
   //console.log(error)
   try {
     return (
